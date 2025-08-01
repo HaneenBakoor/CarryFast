@@ -29,7 +29,9 @@ class User extends Authenticatable
         'password',
         'image',
         'phone_number',
-        'role'
+        'role',
+        'is_active'
+
     ];
     public function order()
     {

@@ -24,4 +24,8 @@ class Dish extends Model
     {
         return $this->hasMany(Cart::class);
     }
+     public function Items()
+    {
+        return $this->belongsToMany(OrderItem::class,'order_items');
+    }
 }
