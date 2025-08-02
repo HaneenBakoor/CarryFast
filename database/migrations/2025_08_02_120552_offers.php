@@ -11,27 +11,26 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('order_items', function (Blueprint $table) {
-            $table->id();
-            $table->uuid('order_id');
+        Schema::create('offers', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+             $table->uuid('restaurants_id');
             $table->uuid('dishes_id');
-            $table->uuid('currency_id');
-            $table->decimal('unit_price',10,4);
-            $table->integer('quantity');
-
-            $table->foreign('order_id')
-                ->references('id')
-                ->on('orders')
-                ->onDelete('restrict');
+            $table->string('title');
+            $table->string('description');
+            $table->string('image')->nullable();
+            $table->enum('discount_type', ['percentage', 'fixed']);
+            $table->boolean('is_active');
+            $table->dateTime('stat_at');
+            $table->dateTime('end_at');
 
             $table->foreign('dishes_id')
                 ->references('id')
                 ->on('dishes')
                 ->onDelete('restrict');
 
-            $table->foreign('currency_id')
+            $table->foreign('restaurants_id')
                 ->references('id')
-                ->on('currencies')
+                ->on('restaurants')
                 ->onDelete('restrict');
             $table->timestamps();
         });
@@ -42,6 +41,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('order_items');
+        //
     }
 };

@@ -11,19 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('interests', function (Blueprint $table) {
+           Schema::create('restaurant_payment_methods', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('user_id');
-            $table->foreign('user_id')
-                ->references('id')
-                ->on('users')
-                ->onDelete('cascade');
-            $table->uuid('subcategory_id');
+            $table->uuid('restaurants_id');
+            $table->enum('payment_type', ['mtn cash', 'syriatel cash', 'cash mobile']);
+            $table->VARCHAR('account_number',255);
+            $table->boolean('is_active');
 
-            $table->foreign('subcategory_id')
+            $table->foreign('restaurants_id')
                 ->references('id')
-                ->on('sub_categories')
-                ->onDelete('cascade');
+                ->on('restaurants')
+                ->onDelete('restrict');
             $table->timestamps();
         });
     }
@@ -33,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('interests');
+        //
     }
 };

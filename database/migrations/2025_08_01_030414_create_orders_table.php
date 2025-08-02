@@ -18,6 +18,7 @@ return new class extends Migration
             $table->decimal('total_price', 10, 2);
             $table->enum('state',['pending','on_the_way','delivered']);
             $table->timestamps();
+            $table->uuid('currency_id');
 
             $table->foreign('user_id')
                   ->references('id')
@@ -27,6 +28,11 @@ return new class extends Migration
             $table->foreign('delivery_id')
                   ->references('id')
                   ->on('users')
+                  ->onDelete('cascade');
+
+            $table->foreign('currency_id')
+                  ->references('id')
+                  ->on('currencies')
                   ->onDelete('cascade');
 
         });

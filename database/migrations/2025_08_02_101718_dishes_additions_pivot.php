@@ -11,19 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('interests', function (Blueprint $table) {
+       Schema::create('dishes_additions_pivot', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('user_id');
-            $table->foreign('user_id')
-                ->references('id')
-                ->on('users')
-                ->onDelete('cascade');
-            $table->uuid('subcategory_id');
+            $table->uuid('additions_id');
+            $table->uuid('dishes_id');
 
-            $table->foreign('subcategory_id')
+            $table->foreign('additions_id')
                 ->references('id')
-                ->on('sub_categories')
-                ->onDelete('cascade');
+                ->on('additions')
+                ->onDelete('restrict');
+
+                  $table->foreign('dishes_id')
+                ->references('id')
+                ->on('dishes')
+                ->onDelete('restrict');
             $table->timestamps();
         });
     }
@@ -33,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('interests');
+        //
     }
 };

@@ -11,30 +11,32 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('order_items', function (Blueprint $table) {
-            $table->id();
+        Schema::create('payment', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->uuid('user_id');
             $table->uuid('order_id');
-            $table->uuid('dishes_id');
-            $table->uuid('currency_id');
-            $table->decimal('unit_price',10,4);
-            $table->integer('quantity');
+            $table->uuid('payment_method_id');
+            $table->enum('status', ['pending', 'paid', 'failed','refunded']);
+            $table->decimal('amount',10,4);
+            $table->dateTime('paid_at');
+
+           $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('restrict');
 
             $table->foreign('order_id')
                 ->references('id')
                 ->on('orders')
                 ->onDelete('restrict');
 
-            $table->foreign('dishes_id')
+            $table->foreign('payment_method_id')
                 ->references('id')
-                ->on('dishes')
-                ->onDelete('restrict');
-
-            $table->foreign('currency_id')
-                ->references('id')
-                ->on('currencies')
+                ->on('restaurant_payment_methods')
                 ->onDelete('restrict');
             $table->timestamps();
         });
+
     }
 
     /**
@@ -42,6 +44,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('order_items');
+        //
     }
 };
