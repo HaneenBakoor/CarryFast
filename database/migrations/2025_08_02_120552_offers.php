@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->enum('discount_type', ['percentage', 'fixed']);
             $table->boolean('is_active');
-            $table->dateTime('stat_at');
+            $table->dateTime('start_at');
             $table->dateTime('end_at');
 
             $table->foreign('dishes_id')

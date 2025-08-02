@@ -19,11 +19,8 @@ return new class extends Migration
             $table->string('phone_number')->unique();
             $table->string('image')->nullable();
             $table->enum('role', ['user', 'delivery', 'provider', 'admin'])->default('user');
-            $table->boolean('is_active')->default(false);
             $table->string('bike_type');
             $table->string('fuel_consumption');
-            $table->boolean('is_active');
-            $table->boolean('is_phone_verified');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

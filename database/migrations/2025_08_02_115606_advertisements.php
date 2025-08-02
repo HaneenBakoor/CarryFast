@@ -11,21 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-       Schema::create('user_interests', function (Blueprint $table) {
+      Schema::create('advertisements', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('user_id');
-            $table->uuid('dishes_id');
+            $table->string('title');
+            $table->string('description');
+            $table->string('image')->nullable();
+            $table->enum('location', ['homepage', 'category', 'page','popup']);
+            $table->boolean('is_active');
+            $table->dateTime('start_at');
+            $table->dateTime('end_at');
 
-
-            $table->foreign('user_id')
-                ->references('id')
-                ->on('users')
-                ->onDelete('restrict');
-
-            $table->foreign('sub_category_id')
-                ->references('id')
-                ->on('sub_categories')
-                ->onDelete('restrict');
             $table->timestamps();
         });
     }

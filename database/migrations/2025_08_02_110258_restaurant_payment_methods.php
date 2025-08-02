@@ -15,7 +15,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->uuid('restaurants_id');
             $table->enum('payment_type', ['mtn cash', 'syriatel cash', 'cash mobile']);
-            $table->VARCHAR('account_number',255);
+            $table->string('account_number',255);
             $table->boolean('is_active');
 
             $table->foreign('restaurants_id')

@@ -30,7 +30,9 @@ class User extends Authenticatable
         'image',
         'phone_number',
         'role',
-        'is_active'
+        'is_active',
+        'bike_type',
+        'fuel_consumption'
 
     ];
     public function order()

@@ -11,17 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-         Schema::create('dishes_restaurant_pivot', function (Blueprint $table) {
+      Schema::create('carts', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('restaurants_id');
+            $table->uuid('user_id');
             $table->uuid('dishes_id');
+            $table->integer('quantity');
 
-            $table->foreign('restaurants_id')
+            $table->foreign('user_id')
                 ->references('id')
-                ->on('restaurants')
+                ->on('users')
                 ->onDelete('restrict');
 
-                 $table->foreign('dishes_id')
+                  $table->foreign('dishes_id')
                 ->references('id')
                 ->on('dishes')
                 ->onDelete('restrict');

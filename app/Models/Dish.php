@@ -28,4 +28,8 @@ class Dish extends Model
     {
         return $this->belongsToMany(OrderItem::class,'order_items');
     }
+    public function offer()
+    {
+        return $this->hasMany(Offer::class);
+    }
 }

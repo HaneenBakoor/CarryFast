@@ -11,19 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-           Schema::create('restaurant_subcategory_pivot', function (Blueprint $table) {
+       Schema::create('dishes_additions', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('restaurants_id');
-            $table->uuid('sub_category_id');
+            $table->uuid('additions_id');
+            $table->uuid('dishes_id');
 
-            $table->foreign('restaurants_id')
+            $table->foreign('additions_id')
                 ->references('id')
-                ->on('restaurants')
+                ->on('additions')
                 ->onDelete('restrict');
 
-                 $table->foreign('sub_category_id')
+                  $table->foreign('dishes_id')
                 ->references('id')
-                ->on('sub_categories')
+                ->on('dishes')
                 ->onDelete('restrict');
             $table->timestamps();
         });

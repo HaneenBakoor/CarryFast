@@ -11,20 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-      Schema::create('cart', function (Blueprint $table) {
+           Schema::create('restaurant_subcategories', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('user_id');
-            $table->uuid('dishes_id');
-            $table->integer('quantity');
+            $table->uuid('restaurants_id');
+            $table->uuid('sub_category_id');
 
-            $table->foreign('user_id')
+            $table->foreign('restaurants_id')
                 ->references('id')
-                ->on('users')
+                ->on('restaurants')
                 ->onDelete('restrict');
 
-                  $table->foreign('dishes_id')
+                 $table->foreign('sub_category_id')
                 ->references('id')
-                ->on('dishes')
+                ->on('sub_categories')
                 ->onDelete('restrict');
             $table->timestamps();
         });

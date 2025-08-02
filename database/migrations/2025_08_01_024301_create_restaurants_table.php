@@ -19,7 +19,6 @@ return new class extends Migration
             $table->time('opening_time');
             $table->time('closing_time');
             $table->integer('estimated_delivery_time');
-            $table->integer('delivery_free');
             $table->decimal('minimum_order_value', 10, 2);
             $table->uuid('category_id');
             $table->timestamps();
