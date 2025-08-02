@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class RestaurantsapiController extends Controller
 {
-    public function indxe(){
+    public function index(){
         $restaurant=Restaurant::all();
         return response()->json($restaurant);
 
