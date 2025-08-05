@@ -14,16 +14,16 @@ return new class extends Migration
         Schema::create('interests', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('user_id');
-            $table->foreign('user_id')
+          /*  $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
-                ->onDelete('cascade');
+                ->onDelete('cascade');*/
             $table->uuid('subcategory_id');
 
-            $table->foreign('subcategory_id')
+         /*   $table->foreign('subcategory_id')
                 ->references('id')
                 ->on('sub_categories')
-                ->onDelete('cascade');
+                ->onDelete('cascade');*/
             $table->timestamps();
         });
     }
