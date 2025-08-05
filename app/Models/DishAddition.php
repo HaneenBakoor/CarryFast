@@ -5,13 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
-class OrderRate extends Model
-{ use HasUuids;
+class DishAddition extends Model
+{
+    use HasUuids;
+    protected $table = 'dishes_additions';
+
     protected $fillable = [
-        'user_id',
-        'order_id',
-        'driver_rate',
-        'order_rate',
+        'additions_id',
+        'dishes_id'
 
     ];
 }

@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-         Schema::create('dishes_restaurants', function (Blueprint $table) {
+        Schema::create('dishes_restaurants', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('restaurants_id');
             $table->uuid('dishes_id');
@@ -21,7 +21,7 @@ return new class extends Migration
                 ->on('restaurants')
                 ->onDelete('restrict');
 
-                 $table->foreign('dishes_id')
+            $table->foreign('dishes_id')
                 ->references('id')
                 ->on('dishes')
                 ->onDelete('restrict');

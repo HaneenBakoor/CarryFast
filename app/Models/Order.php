@@ -6,9 +6,11 @@ use App\Models\User;
 use App\Models\Payment;
 use App\Models\OrderItem;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
 class Order extends Model
 {
+    use HasUuids;
     protected $fillable = ['user_id', 'delivery_id', 'total_price', 'state', 'delivery_id'];
 
 
@@ -31,6 +33,6 @@ class Order extends Model
     }
     public function hasItems()
     {
-        return $this->belongsToMany(OrderItem::class,'order_items');
+        return $this->belongsToMany(OrderItem::class, 'order_items');
     }
 }

@@ -4,13 +4,14 @@ namespace App\Models;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
 class Location extends Model
 {
+    use HasUuids;
     protected $fillable = [
         'plus_code',
-        'formatted_address',
-        'street',
+        'area',
         'city',
         'country',
         'address_details',
@@ -20,7 +21,8 @@ class Location extends Model
         'user_id'
     ];
 
-    public function users(){
+    public function users()
+    {
         return $this->belongsTo(User::class);
     }
 }

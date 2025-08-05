@@ -3,10 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
 class Offer extends Model
 {
-     protected $fillable = [
+    use HasUuids;
+    protected $fillable = [
         'title',
         'description',
         'image',
@@ -18,11 +20,13 @@ class Offer extends Model
         'dishes_id'
     ];
 
-    public function restaurant(){
+    public function restaurant()
+    {
         return $this->belongsTo(Restaurant::class);
     }
 
-    public function dishe(){
+    public function dishe()
+    {
         return $this->belongsTo(Dish::class);
     }
 }

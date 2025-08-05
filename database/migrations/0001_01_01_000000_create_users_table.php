@@ -16,11 +16,12 @@ return new class extends Migration
             $table->string('fname');
             $table->string('lname');
             $table->string('email')->unique();
+            $table->string('google_id')->nullable();
             $table->string('phone_number')->unique();
             $table->string('image')->nullable();
             $table->enum('role', ['user', 'delivery', 'provider', 'admin'])->default('user');
-            $table->string('bike_type');
-            $table->string('fuel_consumption');
+            $table->string('bike_type')->nullable();
+            $table->string('fuel_consumption')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
@@ -35,11 +36,13 @@ return new class extends Migration
 
         Schema::create('sessions', function (Blueprint $table) {
             $table->string('id')->primary();
-            $table->foreignId('user_id')->nullable()->index();
+            // $table->foreignId('user_id')->nullable()->index();
             $table->string('ip_address', 45)->nullable();
             $table->text('user_agent')->nullable();
             $table->longText('payload');
             $table->integer('last_activity')->index();
+             $table->uuid('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

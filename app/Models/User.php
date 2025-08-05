@@ -5,23 +5,21 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Order;
 use App\Models\Payment;
+use Twilio\Http\Client;
 use App\Models\Location;
 use App\Models\Restaurant;
 use App\Models\SubCategory;
+use Illuminate\Support\Str;
+use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
-     */
     protected $fillable = [
         'fname',
         'lname',
@@ -30,7 +28,6 @@ class User extends Authenticatable
         'image',
         'phone_number',
         'role',
-        'is_active',
         'bike_type',
         'fuel_consumption'
 

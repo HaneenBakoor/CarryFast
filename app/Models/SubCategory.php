@@ -7,9 +7,11 @@ use App\Models\User;
 use App\Models\Category;
 use App\Models\Restaurant;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
 class SubCategory extends Model
 {
+    use HasUuids;
     protected $fillable = [
         'name',
         'image',
@@ -30,6 +32,11 @@ class SubCategory extends Model
     }
     public function restuarants()
     {
-        return $this->belongsToMany(Restaurant::class,'restaurant_subcategory');
+        return $this->belongsToMany(
+            Restaurant::class,
+            'restaurants_subcategories',
+            'sub_categories_id',
+            'restaurants_id'
+        );
     }
 }

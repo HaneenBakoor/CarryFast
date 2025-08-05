@@ -5,17 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
-class Advertisement extends Model
+class RestaurantSubcategory extends Model
 {
     use HasUuids;
+    protected $table = 'restaurants_subcategories';
+
     protected $fillable = [
-        'title',
-        'description',
-        'image',
-        'location',
-        'is_active',
-        'start_at',
-        'end_at'
+        'restaurants_id',
+        'sub_categories_id'
 
     ];
 }

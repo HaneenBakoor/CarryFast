@@ -2,15 +2,18 @@
 
 namespace App\Models;
 
+use App\Models\Dish;
 use App\Models\User;
 use App\Models\Addition;
 use App\Models\Category;
 use App\Models\SubCategory;
 use App\Models\PaymentMethod;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
 class Restaurant extends Model
 {
+    use HasUuids;
     protected $fillable = [
         'name',
         'description',
@@ -40,7 +43,21 @@ class Restaurant extends Model
     }
     public function subCategories()
     {
-        return $this->belongsToMany(SubCategory::class, 'restaurant_subcategory');
+        return $this->belongsToMany(
+            SubCategory::class,
+            'restaurants_subcategories',
+            'restaurants_id',
+            'sub_categories_id'
+        );
+    }
+    public function dishes()
+    {
+        return $this->belongsToMany(
+            Dish::class,
+            'dishes_restaurants',
+            'restaurants_id',
+            'dishes_id'
+        );
     }
     public function paymentMethods()
     {

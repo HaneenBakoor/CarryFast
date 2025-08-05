@@ -4,9 +4,10 @@ namespace App\Models;
 
 use App\Models\Restaurant;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
 class PaymentMethod extends Model
-{
+{ use HasUuids;
     protected $fillable = [
         'restaurant_id',
         'payment_type',

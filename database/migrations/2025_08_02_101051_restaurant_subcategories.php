@@ -11,17 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-           Schema::create('restaurant_subcategories', function (Blueprint $table) {
+           Schema::create('restaurants_subcategories', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('restaurants_id');
-            $table->uuid('sub_category_id');
+            $table->uuid('sub_categories_id');
 
             $table->foreign('restaurants_id')
                 ->references('id')
                 ->on('restaurants')
                 ->onDelete('restrict');
 
-                 $table->foreign('sub_category_id')
+                 $table->foreign('sub_categories_id')
                 ->references('id')
                 ->on('sub_categories')
                 ->onDelete('restrict');
