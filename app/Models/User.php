@@ -18,18 +18,20 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, HasUuids;
 
     protected $fillable = [
-        'fname',
-        'lname',
+
+        'name',
         'email',
         'password',
         'image',
         'phone_number',
         'role',
+        'google_id',
         'bike_type',
-        'fuel_consumption'
+        'fuel_consumption',
+        'email_verified_at'
 
     ];
     public function order()
