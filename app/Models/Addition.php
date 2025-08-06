@@ -6,6 +6,7 @@ use App\Models\Dish;
 use App\Models\Restaurant;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Illuminate\Support\Str;
 
 class Addition extends Model
 {
@@ -23,5 +24,13 @@ class Addition extends Model
     public function dishes()
     {
         return $this->belongsToMany(Dish::class, 'dishes_additions', 'additions_id', 'dishes_id');
+    }
+
+     protected static function boot()
+    {
+        parent::boot();
+        static::creating(function ($model) {
+            $model->id = (string) Str::uuid();
+        });
     }
 }
