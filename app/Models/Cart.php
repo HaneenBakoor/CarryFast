@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Illuminate\Support\Str;
+
 
 class Cart extends Model
 { use HasUuids;
@@ -11,7 +13,7 @@ class Cart extends Model
         'user_id',
         'dishes_id',
         'quantity',
-        'price',
+
     ];
     public function user()
     {
@@ -21,4 +23,15 @@ class Cart extends Model
     {
         return $this->belongsTo(Dish::class);
     }
+
+
+
+    protected static function boot()
+{
+    parent::boot();
+    static::creating(function ($model) {
+        $model->id = (string) Str::uuid();
+    });
+}
+
 }

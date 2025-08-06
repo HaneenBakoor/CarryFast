@@ -21,14 +21,13 @@ class AuthController extends Controller
         try {
             $validator = $request->validated();
             $user = User::create([
-                'fname' => $validator['fname'],
-                'lname' => $validator['lname'],
+                'name' => $validator['name'],
                 'email' => $validator['email'],
                 'password' => bcrypt($validator['password']),
                 'role' => $validator['role'],
                 'phone_number' => $validator['phone_number'],
-                'bike_type' => $validator['bike_type'],
-                'fuel_consumption' => $validator['fuel_consumption']
+                'bike_type' => $validator['bike_type'] ?? null,
+                'fuel_consumption' => $validator['fuel_consumption'] ?? null
 
             ]);
             $location = Location::create([
@@ -50,8 +49,10 @@ class AuthController extends Controller
     }
     public function Login(LoginRequest $request)
     {
-        $login_credential = $request->input('login_credential');
-        $password = $request->input('password');
+        $validator = $request->validated();
+
+        $login_credential = $validator['login_credential'];
+        $password = $validator['password'];
 
         $field = filter_var($login_credential, FILTER_VALIDATE_EMAIL) ? 'email' : 'phone_number';
 
