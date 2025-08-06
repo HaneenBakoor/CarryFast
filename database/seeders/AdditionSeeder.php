@@ -28,7 +28,7 @@ class AdditionSeeder extends Seeder
                     'id' => (string) Str::uuid(),
                     'name' => $add['name'],
                     'price' => $add['price'],
-                    'restaurants_id' => $restaurant->id,
+                    'restaurant_id' => $restaurant->id,
                 ]);
 
                 //  ربط الإضافة ببعض الأطباق عشوائيًا من نفس المطعم

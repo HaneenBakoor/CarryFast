@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('additions', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('restaurants_id');
+            $table->uuid('restaurant_id');
             $table->string('name');
             $table->decimal('price', 10, 2);
 
-            $table->foreign('restaurants_id')
+            $table->foreign('restaurant_id')
                 ->references('id')
                 ->on('restaurants')
                 ->onDelete('restrict');

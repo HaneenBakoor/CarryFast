@@ -43,11 +43,12 @@ class Dish extends Model
         return $this->belongsToMany(
             Restaurant::class,
             'dishes_restaurants',
-            'restaurants_id',
-            'dishes_id'
+            'dishes_id',        // Foreign key on pivot table for this model
+            'restaurants_id'    // Foreign key on pivot table for related model
         );
     }
-    public function Additions(){
-        return $this->belongsToMany(Addition::class,'dishes_additions','additions_id','dishes_id');
+    public function Additions()
+    {
+        return $this->belongsToMany(Addition::class, 'dishes_additions', 'dishes_id', 'additions_id');
     }
 }
