@@ -39,7 +39,7 @@ Route::get('/restaurant/{restaurants_id}/sub_categories', [RestaurantsapiControl
 Route::get('/restaurant/{restaurants_id}/sub_categories/{sub_category_id}/dishes', [RestaurantsapiController::class, 'getDishes']);
 
 /****additions apis****/
-Route::post('/additions', [AdditionapiController::class, 'store']);
+Route::post('/restaurants/{restaurantId}/additions', [AdditionapiController::class, 'store']);
 //=======
 
 //>>>>>>> 85be7c73ca2028a7ee80470f9b7e5550da632468
