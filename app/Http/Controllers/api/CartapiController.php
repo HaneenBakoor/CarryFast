@@ -8,11 +8,22 @@ use Illuminate\Http\Request;
 
 class CartapiController extends Controller
 {
-    public function index()
-    {
-        $cart=Cart::all();
-        return response()->json($cart);
+    public function getUserCart($userId)
+{
+    $cart = Cart::where('user_id', $userId)->get();
+
+    if ($cart->isEmpty()) {
+        return response()->json([
+            'message' => 'No items found in cart for this user.'
+        ], 404);
     }
+
+    return response()->json([
+        'message' => 'User cart retrieved successfully.',
+        'cart' => $cart
+    ], 200);
+}
+
 
 
    public function store(Request $request)
