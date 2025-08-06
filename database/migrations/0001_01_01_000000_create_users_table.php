@@ -13,11 +13,10 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('fname');
-            $table->string('lname');
+            $table->string('name');
             $table->string('email')->unique();
-            $table->string('google_id')->nullable();
-            $table->string('phone_number')->unique();
+            $table->string('google_id')->nullable()->unique();
+            $table->string('phone_number')->nullable()->unique();
             $table->string('image')->nullable();
             $table->enum('role', ['user', 'delivery', 'provider', 'admin'])->default('user');
             $table->string('bike_type')->nullable();
@@ -41,7 +40,7 @@ return new class extends Migration
             $table->text('user_agent')->nullable();
             $table->longText('payload');
             $table->integer('last_activity')->index();
-             $table->uuid('user_id');
+            $table->uuid('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
