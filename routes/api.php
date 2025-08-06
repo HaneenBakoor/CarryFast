@@ -27,8 +27,8 @@ Route::get('/restaurants', [RestaurantsapiController::class, 'index']);
 /****Cart apis****/
 Route::get('/user/{userId}/cart', [CartapiController::class, 'getUserCart']);
 Route::post('/addtocart',[CartapiController::class,'store']);
-Route::delete('/carts/delete/{id}', [CartapiController::class, 'destroy']);
-Route::put('/carts/ubdate/{id}', [CartapiController::class, 'update']);
+Route::delete('/user/{userId}/cart', [CartapiController::class, 'destroyByUserId']);
+Route::put('/user/{userid}/cart/{cartId}', [CartapiController::class, 'update']);
 
 //>>>>>>> 91dd05f25f0607388d08ad13aac43c51ab0f0e0e
 Route::post('/register', [AuthController::class, 'SignUp']);
