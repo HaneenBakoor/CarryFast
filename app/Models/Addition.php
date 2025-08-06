@@ -17,7 +17,7 @@ class Addition extends Model
         'restuarant_id'
     ];
 
-    public function restuarant()
+    public function restaurant()
     {
         return $this->belongsTo(Restaurant::class);
     }

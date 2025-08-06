@@ -15,21 +15,21 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-         User::factory(10)->create();
+        // User::factory(10)->create();
 
-      User::factory()->create([
-    'fname' => 'Test',
-    'lname' => 'User',
+        // User::factory()->create([
+        //     'fname' => 'Test',
+        //     'lname' => 'User',
 
-]);
-$this->call([
-    CategorySeeder::class,
-    SubcategorySeeder::class,
-    RestaurantSeeder::class,
-    DishSeeder::class,
-   AdditionSeeder::class,
-   DishRestaurantSeeder::class,
-   RestaurantSubcategorySeeder::class
-]);
+        // ]);
+        $this->call([
+            CategorySeeder::class,
+            SubcategorySeeder::class,
+            RestaurantSeeder::class,
+            DishSeeder::class,
+            AdditionSeeder::class,
+            DishRestaurantSeeder::class,
+            RestaurantSubcategorySeeder::class
+        ]);
     }
 }

@@ -55,8 +55,8 @@ class Restaurant extends Model
         return $this->belongsToMany(
             Dish::class,
             'dishes_restaurants',
-            'restaurants_id',
-            'dishes_id'
+            'restaurants_id',   // Foreign key on pivot table for this model
+            'dishes_id'         // Foreign key on pivot table for related model
         );
     }
     public function paymentMethods()
