@@ -50,6 +50,9 @@ Route::put('/user/{userid}/cart/{cartId}', [CartapiController::class, 'update'])
 
 
 /****additions apis****/
-Route::post('/additions', [AdditionapiController::class, 'store']);
+Route::post('/{resturantsID}/additions', [AdditionapiController::class, 'store']);
 //=======
 
+
+/*intrest apis */
+Route::post('/{userId}/intrests', [InterestapiController::class, 'store']);

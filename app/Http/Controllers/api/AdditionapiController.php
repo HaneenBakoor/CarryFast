@@ -12,13 +12,11 @@ class AdditionapiController extends Controller
 {
    public function store(Request $request, $restaurantId)
 {
-    // التحقق من صحة البيانات المدخلة
     $validated = $request->validate([
-        'name' => 'required|string|max:255', // التحقق من صحة اسم الإضافة
-        'price' => 'required|numeric|min:0', // التحقق من صحة السعر
+        'name' => 'required|string|max:255',
+        'price' => 'required|numeric|min:0',
     ]);
 
-    // التحقق من وجود المطعم في جدول restaurants
     $restaurant = Restaurant::find($restaurantId);
     if (!$restaurant) {
         return response()->json([
@@ -26,7 +24,6 @@ class AdditionapiController extends Controller
         ], 404);
     }
 
-    // إنشاء الإضافة الجديدة للمطعم
     $addition = new Addition();
     $addition->restaurants_id = $restaurantId;
     $addition->name = $validated['name'];
@@ -38,5 +35,7 @@ class AdditionapiController extends Controller
         'addition' => $addition
     ], 201);
 }
+public function destroy($restaurantId){
 
+}
 }

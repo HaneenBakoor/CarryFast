@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class InterestapiController extends Controller
 {
-    public function store(Request $request)
+    public function store(Request $request,$userId)
     {
         // التحقق من صلاحية البيانات
         $request->validate([
