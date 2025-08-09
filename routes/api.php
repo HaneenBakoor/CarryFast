@@ -25,15 +25,14 @@ Route::post('/auth/verify-otp', [AuthController::class, 'verifyOtp']);
 Route::post('/auth/resend-otp', [AuthController::class, 'resendOtp']);
 
 //fatema Apis
-Route::get('/cart', [CartapiController::class, 'index']);
-Route::post('/addtocart', [CartapiController::class, 'store']);
-Route::delete('/carts/{id}', [CartapiController::class, 'destroy']);
-Route::put('/carts/{id}', [CartapiController::class, 'update']);
+
 
 Route::get('/user/{userId}/cart', [CartapiController::class, 'getUserCart']);
 Route::post('/addtocart', [CartapiController::class, 'store']);
 Route::delete('/user/{userId}/cart', [CartapiController::class, 'destroyByUserId']);
 Route::put('/user/{userid}/cart/{cartId}', [CartapiController::class, 'update']);
 
+
 /****additions apis****/
 Route::post('/additions', [AdditionapiController::class, 'store']);
+
