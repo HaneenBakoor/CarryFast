@@ -38,21 +38,13 @@ Route::post('/login', [AuthController::class, 'Login']);
 
 
 //fatema Apis
-Route::get('/cart', [CartapiController::class, 'index']);
-Route::post('/addtocart', [CartapiController::class, 'store']);
-Route::delete('/carts/{id}', [CartapiController::class, 'destroy']);
-Route::put('/carts/{id}', [CartapiController::class, 'update']);
+
 
 Route::get('/user/{userId}/cart', [CartapiController::class, 'getUserCart']);
 Route::post('/addtocart',[CartapiController::class,'store']);
 Route::delete('/user/{userId}/cart', [CartapiController::class, 'destroyByUserId']);
 Route::put('/user/{userid}/cart/{cartId}', [CartapiController::class, 'update']);
-
-
 /****additions apis****/
 Route::post('/{resturantsID}/additions', [AdditionapiController::class, 'store']);
-//=======
-
-
 /*intrest apis */
 Route::post('/{userId}/intrests', [InterestapiController::class, 'store']);
