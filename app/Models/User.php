@@ -30,6 +30,7 @@ class User extends Authenticatable
         'role',
         'google_id',
         'bike_type',
+        'is_active',
         'fuel_consumption',
         'email_verified_at'
 

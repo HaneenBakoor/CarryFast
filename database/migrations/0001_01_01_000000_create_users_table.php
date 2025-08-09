@@ -21,6 +21,10 @@ return new class extends Migration
             $table->enum('role', ['user', 'delivery', 'provider', 'admin'])->default('user');
             $table->string('bike_type')->nullable();
             $table->string('fuel_consumption')->nullable();
+            $table->string('otp_code')->nullable();
+            $table->integer('otp_attempts')->nullable();
+            $table->boolean('is_active')->default(false);
+            $table->timestamp('otp_expires_at')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

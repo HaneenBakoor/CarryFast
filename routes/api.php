@@ -1,14 +1,13 @@
 <?php
 
 use App\Http\Controllers\API\AdditionapiController;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\api\AuthController;
 use App\Http\Controllers\API\CartapiController;
 use App\Http\Controllers\api\CategoryapiController;
-use App\Http\Controllers\API\InterestapiController;
 use App\Http\Controllers\api\RestaurantsapiController;
 use App\Http\Controllers\api\SubCategoryapiController;
+use Illuminate\Support\Facades\Route;
+
 // Haneen Apis
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/categories', [CategoryapiController::class, 'index']);
@@ -22,20 +21,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
 Route::post('/register', [AuthController::class, 'SignUp']);
 Route::post('/login', [AuthController::class, 'Login']);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Route::post('/auth/verify-otp', [AuthController::class, 'verifyOtp']);
+Route::post('/auth/resend-otp', [AuthController::class, 'resendOtp']);
 
 //fatema Apis
 Route::get('/cart', [CartapiController::class, 'index']);
@@ -44,11 +31,9 @@ Route::delete('/carts/{id}', [CartapiController::class, 'destroy']);
 Route::put('/carts/{id}', [CartapiController::class, 'update']);
 
 Route::get('/user/{userId}/cart', [CartapiController::class, 'getUserCart']);
-Route::post('/addtocart',[CartapiController::class,'store']);
+Route::post('/addtocart', [CartapiController::class, 'store']);
 Route::delete('/user/{userId}/cart', [CartapiController::class, 'destroyByUserId']);
 Route::put('/user/{userid}/cart/{cartId}', [CartapiController::class, 'update']);
 
-
 /****additions apis****/
 Route::post('/additions', [AdditionapiController::class, 'store']);
-
