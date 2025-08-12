@@ -4,38 +4,39 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\Interest;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class InterestapiController extends Controller
 {
-    public function store(Request $request,$userId)
-    {
-        // التحقق من صلاحية البيانات
-        $request->validate([
-            'user_id' => 'required|exists:users,id',
-            'subcategory_id' => 'required|exists:sub_categories,id',
-        ]);
+    public function store(Request $request,$userid)
+{
+    $validated = $request->validate([
+        'user_id' => 'required',
+        'price' => 'required',
+    ]);
 
-        // التحقق إذا كان لدى المستخدم 3 اهتمامات بالفعل
-        $interestCount = Interest::where('user_id', $request->user_id)->count();
-
-        if ($interestCount >= 3) {
-            return response()->json([
-                'message' => 'You cannot have more than 3 interests.',
-            ], 400); // رد برسالة خطأ إذا تخطى الـ 3 اهتمامات
-        }
-
-        // إضافة الاهتمام الجديد
-        $interest = Interest::create([
-            'user_id' => $request->user_id,
-            'subcategory_id' => $request->subcategory_id,
-        ]);
-
-        // إرجاع رد بتأكيد إضافة الاهتمام
+    $userid = User::where('user_id', $userid)->get();
+   /* if (!$userid) {
         return response()->json([
-            'message' => 'Interest saved successfully.',
-            'interest' => $interest,
-        ], 201);
-    }
+            'message' => 'user not found.'
+        ], 404);
+    }*/
+
+    $interst = new Interest();
+    $interst->user_id=  $validated['user_id'];
+    $interst->subcategory_id = $validated['subcategory_id'];
+    $interst->save();
+
+    return response()->json([
+        'message' => 'interst added successfully!',
+        'interst' => $interst
+    ], 201);
+}
+public function destroy(){
+
+
+}
 
 }

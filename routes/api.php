@@ -4,9 +4,12 @@ use App\Http\Controllers\API\AdditionapiController;
 use App\Http\Controllers\api\AuthController;
 use App\Http\Controllers\API\CartapiController;
 use App\Http\Controllers\api\CategoryapiController;
+use App\Http\Controllers\API\InterestapiController;
 use App\Http\Controllers\api\RestaurantsapiController;
 use App\Http\Controllers\api\SubCategoryapiController;
 use Illuminate\Support\Facades\Route;
+
+
 
 // Haneen Apis
 Route::middleware('auth:sanctum')->group(function () {
@@ -33,6 +36,6 @@ Route::delete('/user/{userId}/cart', [CartapiController::class, 'destroyByUserId
 Route::put('/user/{userid}/cart/{cartId}', [CartapiController::class, 'update']);
 
 
-/****additions apis****/
+/****test apis****/
 Route::post('/additions', [AdditionapiController::class, 'store']);
-
+Route::post("/user/interests/{user_id}",[InterestapiController::class,'store']);
