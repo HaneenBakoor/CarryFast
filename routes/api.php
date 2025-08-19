@@ -5,6 +5,7 @@ use App\Http\Controllers\api\AuthController;
 use App\Http\Controllers\API\CartapiController;
 use App\Http\Controllers\api\CategoryapiController;
 use App\Http\Controllers\API\InterestapiController;
+use App\Http\Controllers\API\PaymentapiController;
 use App\Http\Controllers\api\RestaurantsapiController;
 use App\Http\Controllers\api\SubCategoryapiController;
 use Illuminate\Support\Facades\Route;
@@ -39,3 +40,6 @@ Route::put('/user/{userid}/cart/{cartId}', [CartapiController::class, 'update'])
 /****test apis****/
 Route::post('/additions', [AdditionapiController::class, 'store']);
 Route::post("/user/interests/{user_id}",[InterestapiController::class,'store']);
+Route::post('/payments/store', [PaymentapiController::class, 'storePaymentMethod']);
+Route::delete('/payments/{id}', [PaymentapiController::class, 'deletePaymentMethod']);
+Route::put('/user/{userid}/payment/{id}',[PaymentapiController::class,'updatePaymentMethod']);

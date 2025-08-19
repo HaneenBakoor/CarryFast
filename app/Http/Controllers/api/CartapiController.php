@@ -72,10 +72,9 @@ public function update(Request $request, $userid, $cartId)
 {
     $validated = $request->validate([
         'quantity' => 'required|integer|min:1',
-        'dishes_id' => 'required|exists:dishes,id', // التحقق من وجود الطبق الجديد
+        'dishes_id' => 'required|exists:dishes,id',
     ]);
 
-    // جلب العنصر في السلة بناءً على user_id و cart_id
     $cart = Cart::where('user_id', $userid)->where('id', $cartId)->first();
 
     if (!$cart) {
@@ -84,7 +83,6 @@ public function update(Request $request, $userid, $cartId)
         ], 404);
     }
 
-    // تحديث الكمية والطبق
     $cart->quantity = $validated['quantity'];
     $cart->dishes_id = $validated['dishes_id'];
     $cart->save();
