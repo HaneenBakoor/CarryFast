@@ -74,7 +74,7 @@ public function updatePaymentMethod(Request $request, $userId, $id)
 
     return response()->json([
         'message' => 'Payment updated successfully!',
-        'data' => $payment->fresh() // يجيب القيم المحدثة من قاعدة البيانات
+        'data' => $payment->fresh() 
     ], 200);
 }
 
