@@ -49,7 +49,6 @@ public function deletePaymentMethod($id){
 
 public function updatePaymentMethod(Request $request, $userId, $id)
 {
-    // التحقق من البيانات
     $validated = $request->validate([
         'order_id' => 'required|exists:orders,id',
         'payment_method_id' => 'required|exists:restaurant_payment_methods,id',
@@ -57,7 +56,6 @@ public function updatePaymentMethod(Request $request, $userId, $id)
         'amount' => 'required|numeric|min:0',
     ]);
 
-    // البحث عن الدفعة الخاصة بهذا المستخدم
     $payment = Payment::where('user_id', $userId)->where('id', $id)->first();
 
     if (!$payment) {
@@ -66,17 +64,19 @@ public function updatePaymentMethod(Request $request, $userId, $id)
         ], 404);
     }
 
- $payment->user_id = $validated['user_id'];
-        $payment->order_id = $validated['order_id'];
-        $payment->payment_method_id = $validated['payment_method_id'];
-        $payment->amount = $validated['amount'];
-        $payment->status = $validated['status'];
-        $payment->save();
+    // تحديث يدوي (مضمون حتى لو fillable ناقص)
+    $payment->order_id = $validated['order_id'];
+    $payment->payment_method_id = $validated['payment_method_id'];
+    $payment->status = $validated['status'];
+    $payment->amount = $validated['amount'];
+
+    $payment->save();
 
     return response()->json([
         'message' => 'Payment updated successfully!',
-        'data' => $payment
+        'data' => $payment->fresh() // يجيب القيم المحدثة من قاعدة البيانات
     ], 200);
 }
+
 
 }
