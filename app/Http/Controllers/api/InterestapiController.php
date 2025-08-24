@@ -13,8 +13,8 @@ class InterestapiController extends Controller
     public function store(Request $request,$userid)
 {
     $validated = $request->validate([
-        'user_id' => 'required',
-        'price' => 'required',
+        'user_id' => 'required|exists:users,id',
+        'subcategory_id' => 'required|exists:sub_categories,id',
     ]);
 
     $userid = User::where('user_id', $userid)->get();

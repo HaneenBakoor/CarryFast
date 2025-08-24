@@ -9,6 +9,7 @@ use Twilio\Http\Client;
 use App\Models\Location;
 use App\Models\Restaurant;
 use App\Models\SubCategory;
+use App\Models\Interest;
 use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
@@ -35,6 +36,10 @@ class User extends Authenticatable
         'email_verified_at'
 
     ];
+    public function intrests()
+    {
+        return $this->hasMany(Interest::class,'user_id');
+    }
     public function order()
     {
         return $this->hasMany(Order::class, 'user_id');

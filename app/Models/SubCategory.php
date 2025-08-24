@@ -6,6 +6,7 @@ use App\Models\Dish;
 use App\Models\User;
 use App\Models\Category;
 use App\Models\Restaurant;
+use App\Models\Interest;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
@@ -38,5 +39,9 @@ class SubCategory extends Model
             'sub_categories_id',
             'restaurants_id'
         );
+    }
+     public function intrests()
+    {
+        return $this->hasMany(Interest::class,'user_id');
     }
 }
