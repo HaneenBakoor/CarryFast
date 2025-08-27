@@ -68,4 +68,8 @@ class Restaurant extends Model
     {
         return $this->hasMany(Offer::class);
     }
+      public function favorites()
+    {
+        return $this->morphMany(Favorite::class, 'favoritable');
+    }
 }
