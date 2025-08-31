@@ -36,10 +36,14 @@ Route::post('/addtocart', [CartapiController::class, 'store']);
 Route::delete('/user/{userId}/cart', [CartapiController::class, 'destroyByUserId']);
 Route::put('/user/{userid}/cart/{cartId}', [CartapiController::class, 'update']);
 
+Route::get('/interests/{user_Id}', [InterestapiController::class, 'showallintrests']);
+Route::post("/user/interests/{user_id}",[InterestapiController::class,'store']);
+Route::delete('/user/{userId}/interests', [InterestapiController::class, 'destroyByUserId']);
+Route::put('/user/{userid}/interests/{interestsId}', [InterestapiController::class, 'update']);
+
 
 /****test apis****/
 Route::post('/additions', [AdditionapiController::class, 'store']);
-Route::post("/user/interests/{user_id}",[InterestapiController::class,'store']);
 Route::post('/payments/store', [PaymentapiController::class, 'storePaymentMethod']);
 Route::delete('/payments/{id}', [PaymentapiController::class, 'deletePaymentMethod']);
 Route::put('/user/{userid}/payment/{id}',[PaymentapiController::class,'updatePaymentMethod']);
