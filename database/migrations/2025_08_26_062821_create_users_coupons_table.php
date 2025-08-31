@@ -11,18 +11,21 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('favourites', function (Blueprint $table) {
+        Schema::create('users_coupons', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->uuid('coupon_id');
             $table->uuid('user_id');
+
+            $table->foreign('coupon_id')
+                ->references('id')
+                ->on('coupons')
+                ->onDelete('cascade');
+
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade');
-            $table->uuid('restaurant_id');
-            $table->foreign('restaurant_id')
-                ->references('id')
-                ->on('restaurants')
-                ->onDelete('cascade');
+            $table->timestamps();
         });
     }
 
@@ -31,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('favourites');
+        Schema::dropIfExists('users_coupons');
     }
 };

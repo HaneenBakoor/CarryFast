@@ -1,15 +1,14 @@
 <?php
-
 namespace App\Models;
 
+use App\Models\Addition;
 use App\Models\Cart;
 use App\Models\Offer;
-use App\Models\Addition;
 use App\Models\OrderItem;
 use App\Models\Restaurant;
 use App\Models\SubCategory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Illuminate\Database\Eloquent\Model;
 
 class Dish extends Model
 {
@@ -19,7 +18,7 @@ class Dish extends Model
         'description',
         'image',
         'price',
-        'sub_category_id'
+        'sub_category_id',
     ];
 
     public function subCategory()
@@ -43,12 +42,16 @@ class Dish extends Model
         return $this->belongsToMany(
             Restaurant::class,
             'dishes_restaurants',
-            'dishes_id',        // Foreign key on pivot table for this model
-            'restaurants_id'    // Foreign key on pivot table for related model
+            'dishes_id',     // Foreign key on pivot table for this model
+            'restaurants_id' // Foreign key on pivot table for related model
         );
     }
     public function Additions()
     {
         return $this->belongsToMany(Addition::class, 'dishes_additions', 'dishes_id', 'additions_id');
+    }
+    public function favorites()
+    {
+        return $this->morphMany(Favorite::class, 'favoritable');
     }
 }

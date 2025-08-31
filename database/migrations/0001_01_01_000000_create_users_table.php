@@ -19,8 +19,10 @@ return new class extends Migration
             $table->string('phone_number')->nullable()->unique();
             $table->string('image')->nullable();
             $table->enum('role', ['user', 'delivery', 'provider', 'admin'])->default('user');
-            $table->string('bike_type')->nullable();
-            $table->string('fuel_consumption')->nullable();
+            $table->string('motorcycle_brand')->nullable();
+            $table->string('motorcycle_model')->nullable();
+            $table->string('license_plate')->unique()->nullable();
+             $table->string('fuel_consumption_per_km')->nullable();
             $table->string('otp_code')->nullable();
             $table->integer('otp_attempts')->nullable();
             $table->boolean('is_active')->default(false);

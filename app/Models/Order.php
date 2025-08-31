@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 class Order extends Model
 {
     use HasUuids;
-    protected $fillable = ['user_id', 'delivery_id', 'total_price', 'state', 'delivery_id'];
+    protected $fillable = ['user_id', 'delivery_id', 'total_price', 'state','discount_amount','currency_id','coupon_id'];
 
 
     public function user()
@@ -34,5 +34,13 @@ class Order extends Model
     public function hasItems()
     {
         return $this->belongsToMany(OrderItem::class, 'order_items');
+    }
+     public function coupon()
+    {
+        return $this->belongsTo(Coupon::class);
+    }
+     public function currency()
+    {
+        return $this->belongsTo(currency::class);
     }
 }

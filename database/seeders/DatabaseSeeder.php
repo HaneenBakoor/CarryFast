@@ -29,7 +29,13 @@ class DatabaseSeeder extends Seeder
             DishSeeder::class,
             AdditionSeeder::class,
             DishRestaurantSeeder::class,
-            RestaurantSubcategorySeeder::class
+            RestaurantSubcategorySeeder::class,
+            CurrencySeeder::class,
+            UserSeeder::class,
+            CartSeeder::class,
+            CouponSeeder::class,
+            OrderSeeder::class,
+            UserCouponSeeder::class
         ]);
     }
 }

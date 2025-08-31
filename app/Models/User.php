@@ -1,15 +1,14 @@
 <?php
-
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Order;
 use App\Models\Payment;
-use Twilio\Http\Client;
+use App\Models\Interest;
 use App\Models\Location;
+use App\Models\Favourite;
 use App\Models\Restaurant;
 use App\Models\SubCategory;
-use App\Models\Interest;
 use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
@@ -30,15 +29,17 @@ class User extends Authenticatable
         'phone_number',
         'role',
         'google_id',
-        'bike_type',
+        'motorcycle_brand',
+        'license_plate',
+        'motorcycle_model',
         'is_active',
-        'fuel_consumption',
-        'email_verified_at'
+        'fuel_consumption_per_km',
+        'email_verified_at',
 
     ];
     public function intrests()
     {
-        return $this->hasMany(Interest::class,'user_id');
+        return $this->hasMany(Interest::class, 'user_id');
     }
     public function order()
     {
@@ -76,6 +77,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Cart::class);
     }
+    public function coupons()
+    {
+        return $this->belongsToMany(Coupon::class, 'users_coupons');
+    }
 
     /**
      * The attributes that should be hidden for serialization.
@@ -96,7 +101,12 @@ class User extends Authenticatable
     {
         return [
             'email_verified_at' => 'datetime',
-            'password' => 'hashed',
+            'password'          => 'hashed',
         ];
+    }
+
+    public function favorites()
+    {
+        return $this->hasMany(Favorite::class);
     }
 }
